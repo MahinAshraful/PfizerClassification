@@ -82,7 +82,7 @@ class ParkinsonDetectionModel:
         print("CROSS-VALIDATION SETUP")
         print("=" * 40)
 
-        # Use 5-fold stratified group CV (maintains class balance + subject independence)
+        # Use 3-fold stratified group CV (maintains class balance + subject independence)
         cv = StratifiedGroupKFold(n_splits=4, shuffle=True, random_state=42)
 
         # Validate no subject leakage
@@ -123,7 +123,7 @@ class ParkinsonDetectionModel:
                 (
                     "classifier",
                     RandomForestClassifier(
-                        n_estimators=100,  # 100 decision trees
+                        n_estimators=200,  # 50 decision trees
                         max_depth=10,  # Prevent overfitting
                         random_state=42,
                         class_weight="balanced",  # Handle 3:1 class imbalance
@@ -197,7 +197,7 @@ class ParkinsonDetectionModel:
                     (
                         "classifier",
                         RandomForestClassifier(
-                            n_estimators=100,
+                            n_estimators=200,
                             max_depth=10,
                             random_state=42,
                             class_weight="balanced",
@@ -287,7 +287,7 @@ def run_analysis(data_path="../parkinsons.data"):
         print(f"Error: {str(e)}")
 
 
-# run
+# Run the analysis when script is executed
 if __name__ == "__main__":
     print("Starting Parkinson's Disease Detection Analysis...")
     print("Using subject-independent cross-validation for clinical validity\n")
