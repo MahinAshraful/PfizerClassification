@@ -74,8 +74,8 @@ class ParkinsonDetectionModel:
         print("CROSS-VALIDATION SETUP")
         print("="*40)
         
-        # Use 3-fold stratified group CV (maintains class balance + subject independence)
-        cv = StratifiedGroupKFold(n_splits=3, shuffle=True, random_state=42)
+        # Use 5-fold stratified group CV (maintains class balance + subject independence)
+        cv = StratifiedGroupKFold(n_splits=4, shuffle=True, random_state=42)
         
         # Validate no subject leakage
         print("Validating CV splits...")
@@ -164,7 +164,7 @@ class ParkinsonDetectionModel:
         print("CLINICAL EVALUATION")
         print("="*40)
         
-        cv = StratifiedGroupKFold(n_splits=3, shuffle=True, random_state=42)
+        cv = StratifiedGroupKFold(n_splits=4, shuffle=True, random_state=42)
         
         # Collect all predictions across CV folds
         all_y_true, all_y_pred, all_y_prob = [], [], []

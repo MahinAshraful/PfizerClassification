@@ -14,7 +14,7 @@ class ParkinsonDetectionModel:
     Key Feature: Subject-Independent Cross-Validation (no data leakage)
     """
     
-    def __init__(self, data_path='parkinsons.data'):
+    def __init__(self, data_path='../parkinsons.data'):
         self.data_path = data_path
         self.df = None
         self.X = None
@@ -223,7 +223,7 @@ class ParkinsonDetectionModel:
             'confusion_matrix': cm
         }
 
-def run_analysis(data_path='parkinsons.data'):
+def run_analysis(data_path='../parkinsons.data'):
     """
     Main function: Run complete Parkinson's detection analysis
     """
@@ -251,7 +251,7 @@ def run_analysis(data_path='parkinsons.data'):
         
     except FileNotFoundError:
         print(f"Error: Could not find {data_path}")
-        print("Make sure parkinsons.data is in the same folder as this script")
+        print("Make sure parkinsons.data is in the outside root folder")
     except Exception as e:
         print(f"Error: {str(e)}")
 
@@ -260,4 +260,4 @@ if __name__ == "__main__":
     print("Starting Parkinson's Disease Detection Analysis...")
     print("Using subject-independent cross-validation for clinical validity\n")
     
-    model, results, clinical_metrics = run_analysis('parkinsons.data')
+    model, results, clinical_metrics = run_analysis('../parkinsons.data')

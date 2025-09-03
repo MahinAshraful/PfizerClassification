@@ -75,7 +75,7 @@ class ParkinsonDetectionModel:
         print("="*40)
         
         # Use 3-fold stratified group CV (maintains class balance + subject independence)
-        cv = StratifiedGroupKFold(n_splits=3, shuffle=True, random_state=42)
+        cv = StratifiedGroupKFold(n_splits=25, shuffle=True, random_state=42)
         
         # Validate no subject leakage
         print("Validating CV splits...")
@@ -164,7 +164,7 @@ class ParkinsonDetectionModel:
         print("CLINICAL EVALUATION")
         print("="*40)
         
-        cv = StratifiedGroupKFold(n_splits=3, shuffle=True, random_state=42)
+        cv = StratifiedGroupKFold(n_splits=25, shuffle=True, random_state=42)
         
         # Collect all predictions across CV folds
         all_y_true, all_y_pred, all_y_prob = [], [], []
@@ -239,7 +239,7 @@ def run_analysis(data_path='../parkinsons.data'):
         
         # Final summary
         print(f"\n" + "="*60)
-        print("FINAL RESULTS")
+        print("FINAL RESULTS (USING 25 FOLD)")
         print("="*60)
         print(f"AUC-ROC Score: {clinical['auc']:.3f}")
         print(f"Sensitivity (PD Detection): {clinical['sensitivity']:.3f}")
@@ -251,7 +251,7 @@ def run_analysis(data_path='../parkinsons.data'):
         
     except FileNotFoundError:
         print(f"Error: Could not find {data_path}")
-        print("Make sure parkinsons.data is outside folder")
+        print("Make sure parkinsons.data is in the outside root folder")
     except Exception as e:
         print(f"Error: {str(e)}")
 
